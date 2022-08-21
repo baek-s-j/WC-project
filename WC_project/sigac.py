@@ -50,11 +50,11 @@ fig.update_yaxes(linecolor='red', gridcolor='gray', mirror=True)
 fig.update_yaxes(tickformat=',')  # 간단하게 , 형으로 변경
 
 # html 파일로 저장하고 따로 위치장소를 태그 해야만 플라스크 웹에 띄울 수 있음 그외 방법은 아직 모르겠음
-fig.write_html('line.html')
+fig.write_image('si.png')
 # 이 파일을
 '''
 <iframe src="../static/charts/line.html" width="1200" height="500" frameborder="0" framespacing="0" marginheight="0" marginwidth="0" scrolling="no" vspace="0"></iframe>
 이 태그로 넣고 싶은 웹 태그 부분에 입력 src는 경로 나머지는 크기와 프레임 선 나타내기 옵션들
 '''
 # 그래프 보기
-fig.show()
+
