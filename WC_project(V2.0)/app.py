@@ -47,12 +47,16 @@ def visualization():
     collection = db.sensor
     number1 = collection.estimated_document_count()
     collection = db.zone
+    z_result = list(collection.find())
     number2 = collection.estimated_document_count()
     collection = db.manager
     number4 = collection.estimated_document_count()
     count_list = list((number1, number2, number3, number4))
     client.close()
-    return render_template('visualization.html', count=count_list)
+    z_chart = ["../static/chart/무위사-내부-후불벽화-5번.html", "../static/chart/무위사-외부-전면-3번.html",
+               "../static/chart/무위사-외부-후면-4번.html", "../static/chart/무위사-내부-우측-2번.html",
+               "../static/chart/무위사-내부-좌측-1번.html"]
+    return render_template('visualization.html', count=count_list, z_result=z_result, z_chart=z_chart)
 
 
 @app.route('/addManager.html')
@@ -386,8 +390,6 @@ def THDatatable():
         tmp = list(collection.find({"zone_name": i['name']}))
         th_tmp.append(tmp)
 
-
-
     client.close()
     return render_template('THDatatable.html', count=count_list, z_result=z_result, th_result=th_tmp)
 
@@ -421,11 +423,12 @@ def THDatatableAct():
         collection = db.thdata
         th_tmp = list()
         for i in z_result:
-            tmp = list(collection.find({"zone_name": i['name'],"time":{"$regex":query}}))
+            tmp = list(collection.find({"zone_name": i['name'], "time": {"$regex": query}}))
             th_tmp.append(tmp)
 
         client.close()
-        return render_template('THDatatable.html', count=count_list, z_result=z_result, th_result=th_tmp)
+        return render_template('THDatatableAct.html', count=count_list, z_result=z_result, th_result=th_tmp,
+                               day_re=result)
 
 
 @app.route('/riskDatatable.html')
@@ -450,6 +453,29 @@ def riskDatatable():
 
     client.close()
     return render_template('riskDatatable.html', count=count_list, z_result=z_result, risk_result=risk_tmp)
+
+
+@app.route('/tlqkfwha.html')
+def tlqkfwha():
+    client = MongoClient('127.0.0.1', 27017)
+    db = client.wc_project
+    collection = db.relic
+    number3 = collection.estimated_document_count()
+    collection = db.sensor
+    number1 = collection.estimated_document_count()
+    collection = db.zone
+    z_result = list(collection.find())
+    number2 = collection.estimated_document_count()
+    collection = db.manager
+    number4 = collection.estimated_document_count()
+    count_list = list((number1, number2, number3, number4))
+    collection = db.thdata
+    th_tmp = list()
+    for i in z_result:
+        tmp = list(collection.find({"zone_name": i['name']}))
+        th_tmp.append(tmp)
+    client.close()
+    return render_template('tlqkfwha.html', count=count_list, z_result=z_result, th_result=th_tmp)
 
 
 # 파이썬 명령어로 실행할 수 있음
