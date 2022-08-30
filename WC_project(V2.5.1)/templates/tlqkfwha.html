@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코로나 지역현황</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <style>
+        #chartBox{
+            width : 80%;
+            margin-left: auto;
+            margin-right: auto;
+            max-width : 600px;
+        }
+
+        div > h1 {
+            text-align: center;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+
+
+    <div id = "chartBox">
+        <h1>지역별 사망자 누적수</h1>
+        <canvas id="deathCnt" width="100", height="100"></canvas>
+        <canvas id="ex_graph" width="100", height="100"></canvas>
+
+
+
+    </div>
+
+    <script>
+        // 지역 표현 색깔
+        colorList = ["rgb(255, 99, 132)", "rgb(255, 162, 235)", "rgb(255, 205, 86)",
+        "rgb(200, 99, 132)", "rgb(200, 162, 235)", "rgb(200, 205, 86)",
+        "rgb(160, 99, 132)", "rgb(160, 162, 235)", "rgb(160, 205, 86)",
+        "rgb(130, 99, 132)", "rgb(130, 162, 235)", "rgb(130, 205, 86)",
+        "rgb(60, 99, 132)", "rgb(60, 162, 235)", "rgb(60, 205, 86)",
+        "rgb(0, 99, 132)", "rgb(0, 162, 235)", "rgb(0, 205, 86)",
+    ]
+
+
+
+
+
+
+        // 사망자 수(누적수) 그래프
+        var ctx_deathCnt = document.getElementById('deathCnt').getContext('2d');
+
+        var deathCntChart = new Chart(ctx_deathCnt, {
+            type: "line",
+            data: {
+                labels: [{% for d in th_result %}"{{d.date}}",{% endfor %}],
+                datasets: [{
+                    label: " 누적",
+                    data: [{% for d in th_result %}{{d.tem}},{% endfor %}],
+                    backgroundColor: colorList//["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                }]
+            },
+
+        });
+
+              // Salse & Revenue Chart
+    var ctx2 = document.getElementById('ex_graph').getContext("2d");
+    var myChart2 = new Chart(ctx2, {
+        type: "line",
+        data: {
+            labels: [{% for d in th_result %}"{{d.date}}",{% endfor %}],
+            datasets: [{
+                    label: "온도",
+                    data: [{% for d in th_result %}{{d.tem}},{% endfor %}],
+                    backgroundColor: "rgba(235, 22, 22, .7)",
+                    fill: true
+                },
+                {
+                    label: "습도",
+                    data: [{% for d in th_result %}{{d.hu}},{% endfor %}],
+                    backgroundColor: "rgba(2, 0, 22, .5)",
+                    fill: true
+                }
+            ]
+            },
+        options: {
+            responsive: true
+        }
+    });
+
+
+
+
+
+    </script>
+</body>
+
+</html>
