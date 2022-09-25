@@ -43,6 +43,14 @@ fig.add_trace(go.Scatter(x=random_x, y=random_y1,
                     mode='lines',
                     name='습도',line=dict(color='royalblue',width=1)))
 
+##선 색 바꾸는 법
+
+#fig.add_treac 항목중 color 항목에 
+#'royalblue 가 파란색 firevrick이 붉은색으로 설정하는 것
+#그 외 색깔은 plotly 홈페이지에 색깔 명칭이 있으니 확인후 수정하면 다른색 설정가능
+
+
+
 
 ###
 #그래프 위험선 그리기 파트
