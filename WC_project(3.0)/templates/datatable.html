@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>온습도 관리 시스템</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="static/img/favicon.svg" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="static/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="static/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">  <!-- 페이지 제목부분 -->
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-secondary navbar-dark">
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="bi bi-badge-wc-fill"></i>Team WC</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    {% if session["id"] %}
+                    <div class="position-relative">
+                        <i class="bi bi-file-person"></i>
+                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">{{session["id"]}}</h6>
+                        <span>Manager</span>
+                    </div>
+                    {% else %}
+                    <div class="position-relative">
+                        <i class="bi bi-file-person"></i>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">None</h6>
+                        <span>Visitor</span>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="index.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Home</a>
+                    <a href="about.html" class="nav-item nav-link"><i class="bi bi-chat-dots-fill me-2"></i>About</a>
+                    <a href="visualization.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Visualization</a>
+                    <a href="ML.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Machine Learning</a>
+                    <a href="THDatatable.html" class="nav-item nav-link"><i class="bi bi-thermometer-half me-2"></i>T&H Data</a>
+                    <a href="datatable.html" class="nav-item nav-link active"><i class="bi bi-clipboard-check me-2"></i>Other Data</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Add Data</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="addRelic.html" class="dropdown-item">유물</a>
+                            <a href="addSensor.html" class="dropdown-item">센서</a>
+                            <a href="addZone.html" class="dropdown-item">구역</a>
+                            <a href="tlqkfwha.html" class="dropdown-item">위험도 데이터</a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="bi bi-badge-wc-fill"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                {% if session["id"] %}
+                <div class="navbar-nav align-items-center ms-auto">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-bell me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Notificatin</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Profile updated</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">New user added</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Password changed</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all notifications</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="bi bi-file-person"></i>
+                            <span class="d-none d-lg-inline-flex">{{session["id"]}}</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="logout" class="dropdown-item">Log Out</a>
+                        </div>
+                    </div>
+
+                </div>
+                {% else %}
+                <div class="navbar-nav align-items-center ms-auto">
+                    <div class="nav-item">
+                        <a href="addManager.html" class="nav-link " >
+                            <i class="bi bi-patch-plus-fill me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Sign Up</span>
+                        </a>
+
+                    </div>
+                    <div class="nav-item">
+                        <a href="login.html" class="nav-link " >
+                            <i class="bi bi-door-open me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Login</span>
+                        </a>
+
+                    </div>
+                </div>
+                {% endif %}
+            </nav>
+            <!-- Navbar End -->
+
+
+            <!-- 데이터 정보 Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="bi bi-broadcast-pin fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Sensor</p>
+                                <h6 class="mb-0">{{count.0}}개</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="bi bi-building fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Zone</p>
+                                <h6 class="mb-0">{{count.1}}개</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="bi bi-sim fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Relic</p>
+                                <h6 class="mb-0">{{count.2}}개</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="bi bi-people fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Manager</p>
+                                <h6 class="mb-0">{{count.3}}명</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 데이터 정보 end -->
+                {% set tab = request.args.get('tab') %}
+                {% if tab == 'zone' %}
+                {% set act1 = '' %}
+                {% set act2  = 'show active' %}
+                {% set act3  = '' %}
+                {% set act4  = '' %}
+                {% elif tab == 'relic' %}
+                {% set act1 = '' %}
+                {% set act2  = '' %}
+                {% set act3  = 'show active' %}
+                {% set act4  = '' %}
+                {% elif tab == 'manager' %}
+                {% set act1 = '' %}
+                {% set act2  = '' %}
+                {% set act3  = '' %}
+                {% set act4  = 'show active' %}
+                {% else %}
+                {% set act1 = 'show active' %}
+                {% set act2  = '' %}
+                {% set act3  = '' %}
+                {% set act4  = '' %}
+                {% endif %}
+
+
+            <div class="container-fluid pt-4 px-4">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button class="nav-link {{act1}}" id="nav-sensor-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-sensor" type="button" role="tab" aria-controls="nav-sensor"
+                                        aria-selected="true">Sensor</button>
+
+                                    <button class="nav-link {{act2}}" id="nav-zone-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-zone" type="button" role="tab"
+                                        aria-controls="nav-zone" aria-selected="false">Zone</button>
+
+                                    <button class="nav-link {{act3}}" id="nav-relic-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-relic" type="button" role="tab"
+                                        aria-controls="nav-relic" aria-selected="false">Relic</button>
+
+                                    <button class="nav-link {{act4}}" id="nav-manager-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-manager" type="button" role="tab" aria-controls="nav-manager"
+                                        aria-selected="true">Manager</button>
+                                </div>
+                            </nav>
+                            <div class="tab-content pt-3" id="nav-tabContent">
+                                <div class="tab-pane fade {{act1}}" id="nav-sensor" role="tabpanel" aria-labelledby="nav-sensor-tab">
+
+                                    <!-- sensorTable Start -->
+                                    <div class="container-fluid pt-4 px-4">
+                                            <div class="table-responsive">
+                                                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                                    <thead>
+                                                        <tr class="text-white">
+                                                            <th scope="col">센서 번호</th>
+                                                            <th scope="col">센서 이름</th>
+                                                            <th scope="col">센서 종류</th>
+                                                            <th scope="col">구역 번호</th>
+                                                            <th scope="col">Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+
+
+                                                            {% for i in s_result %}
+                                                            <tr>
+                                                                <td>{{i._id }}</td>
+                                                                <td>{{i.name }}</td>
+                                                                <td>{{i.deviceType }}</td>
+                                                                <td>{{i.zone_number }}</td>
+                                                                <td><a class="btn btn-sm btn-primary" href="">Delete</a></td>
+                                                            </tr>
+                                                            {% endfor %}
+
+
+                                                    </tbody>
+                                                </table>
+                                                    <div class="btn-group me-2 pt-4" role="group" >
+                                                        {% for j in range(1,page_list.0) %}
+                                                    <button type="button" class="btn btn-primary" onclick="location.href='datatable.html?tab=sensor&page={{j}}' ">{{j}}</button>
+                                                        {% endfor %}
+
+                                                    </div>
+                                            </div>
+                                    </div>
+                                    <!-- sensorTable End -->
+                                </div>
+                                <div class="tab-pane fade {{act2}}" id="nav-zone" role="tabpanel" aria-labelledby="nav-zone-tab">
+                                    <!-- zoneTable Start -->
+                                    <div class="container-fluid pt-4 px-4">
+                                            <div class="table-responsive">
+                                                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                                    <thead>
+                                                        <tr class="text-white">
+                                                            <th scope="col">구역 번호</th>
+                                                            <th scope="col">구역 이름</th>
+                                                            <th scope="col">관리 번호</th>
+                                                            <th scope="col">Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+
+
+                                                            {% for i in z_result %}
+                                                            <tr>
+                                                                <td>{{i.number }}</td>
+                                                                <td>{{i.name }}</td>
+                                                                <td>{{i.familyId }}</td>
+                                                                <td><a class="btn btn-sm btn-primary" href="">Delete</a></td>
+                                                            </tr>
+                                                            {% endfor %}
+
+
+                                                    </tbody>
+                                                </table>
+                                                <div class="btn-group me-2 pt-4" role="group" >
+                                                        {% for j in range(1,page_list.1) %}
+                                                    <button type="button" class="btn btn-primary" onclick="location.href='datatable.html?tab=zone&page={{j}}' ">{{j}}</button>
+                                                        {% endfor %}
+
+                                                    </div>
+                                            </div>
+                                    </div>
+                                    <!-- zoneTable End -->
+                                </div>
+
+
+
+                                <div class="tab-pane fade {{act3}}" id="nav-relic" role="tabpanel" aria-labelledby="nav-relic-tab">
+                                    <!-- relicTable Start -->
+                                <div class="container-fluid pt-4 px-4">
+                                        <div class="table-responsive">
+                                            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                                <thead>
+                                                    <tr class="text-white">
+                                                        <th scope="col">유물 번호</th>
+                                                        <th scope="col">유물 이름</th>
+                                                        <th scope="col">수명</th>
+                                                        <th scope="col">구역 번호</th>
+                                                        <th scope="col">Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+
+
+                                                        {% for i in r_result %}
+                                                        <tr>
+                                                            <td>{{i.relic_number }}</td>
+                                                            <td>{{i.relic_name }}</td>
+                                                            <td>{{i.relic_life }}</td>
+                                                            <td>{{i.zone_number }}</td>
+                                                            <td><a class="btn btn-sm btn-primary" href="">Delete</a></td>
+                                                        </tr>
+                                                        {% endfor %}
+
+
+                                                </tbody>
+                                            </table>
+                                            <div class="btn-group me-2 pt-4" role="group" >
+                                                        {% for j in range(1,page_list.2) %}
+                                                    <button type="button" class="btn btn-primary" onclick="location.href='datatable.html?tab=relic&page={{j}}' ">{{j}}</button>
+                                                        {% endfor %}
+
+                                                    </div>
+                                        </div>
+                                </div>
+                                <!-- relicTable End -->
+                                </div>
+
+                                <div class="tab-pane fade {{act4}}" id="nav-manager" role="tabpanel" aria-labelledby="nav-manager-tab">
+                                    <!-- ManagerTable Start -->
+                                <div class="container-fluid pt-4 px-4">
+                                        <div class="table-responsive">
+                                            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                                <thead>
+                                                    <tr class="text-white">
+                                                        <th scope="col">매니저 번호</th>
+                                                        <th scope="col">매니저 이름</th>
+                                                        <th scope="col">생년월일</th>
+                                                        <th scope="col">번호</th>
+                                                        <th scope="col">Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+
+
+                                                        {% for i in m_result %}
+                                                        <tr>
+                                                            <td>{{i.manager_number }}</td>
+                                                            <td>{{i.manager_name }}</td>
+                                                            <td>{{i.manager_birthday }}</td>
+                                                            <td>{{i.manager_phone }}</td>
+                                                            <td><a class="btn btn-sm btn-primary" href="">Delete</a></td>
+                                                        </tr>
+                                                        {% endfor %}
+
+
+                                                </tbody>
+                                            </table>
+                                            <div class="btn-group me-2 pt-4" role="group" >
+                                                        {% for j in range(1,page_list.3) %}
+                                                    <button type="button" class="btn btn-primary" onclick="location.href='datatable.html?tab=manager&page={{j}}' ">{{j}}</button>
+                                                        {% endfor %}
+
+                                                    </div>
+                                        </div>
+                                </div>
+                                <!-- ManagerTable End -->
+                                </div>
+
+
+
+                            </div>
+                        </div>
+            </div>
+
+
+
+
+
+           <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="static/lib/chart/chart.min.js"></script>
+    <script src="static/lib/easing/easing.min.js"></script>
+    <script src="static/lib/waypoints/waypoints.min.js"></script>
+    <script src="static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="static/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="static/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="static/js/main.js"></script>
+</body>
+
+</html>
