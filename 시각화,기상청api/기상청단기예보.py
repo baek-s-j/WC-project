@@ -19,9 +19,9 @@ serviceKey='Zy3WCPt243lyaq0PqqKVwGL%2F42nvD9qjxGcz%2FgVr3y01%2BxYJ%2BsmdjB1H01RW
 pageNo = '1' #페이지번호
 numOfRows = '10' #한 페이지 결과 수
 dataType = 'XML' #요청자료형식(XML/JSON) Default: XML
-base_date = '20221011' #‘22년 x월 x일 발표 최근껄로 해야지 오류가 안남
+base_date = '20221025' #‘22년 x월 x일 발표 최근껄로 해야지 오류가 안남
 #날짜 설정 잘해야함 오류날 수 있음
-base_time='0000' #06시30분 발표(30분 단위)
+base_time='1600' #06시30분 발표(30분 단위)
 #마찬가지 오늘날짜 기준 잘 설정해야함
 nx='56'  #예보지점 X 좌표값
 ny='64'  #예보지점 Y 좌표값

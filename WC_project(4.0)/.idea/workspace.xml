@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b1ed6d24-7465-481d-9549-77e924cf8c2f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/WC_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WC_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/past_weatherapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/past_weatherapi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/Thdataapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/Thdataapi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/exc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/exc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/riskdataapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/riskdataapi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/sensorapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/sensorapi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/sigac.py" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/sigac.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/ML.html" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/ML.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/THDatatable.html" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/THDatatable.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/THDatatableAct.html" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/THDatatableAct.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/addManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/addManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/addRelic.html" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/addRelic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/addSensor.html" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/addSensor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/addZone.html" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/addZone.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/datatable.html" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/datatable.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/tlqkfwha.html" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/tlqkfwha.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/visualization.html" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/visualization.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/templates/widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(V2.5.1)/zoneapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(V2.5.1)/zoneapi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(black)/.idea/WC_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(black)/.idea/WC_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(black)/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(black)/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WC_project(black)/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../WC_project(black)/app.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2GOpq6j2KjqwVazmOUPJ0IdBy4g" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager" selected="Python.기상청단기예보">
+    <configuration name="기상청단기예보" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WC_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/PycharmProjects/WC_project" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/PycharmProjects/WC_project/기상청단기예보.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WC_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="line_그래프_범위설정기능_점 애니메이션 기능_구현" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WC_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/PycharmProjects/WC_project" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/PycharmProjects/WC_project/line_그래프_범위설정기능_점 애니메이션 기능_구현.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.기상청단기예보" />
+        <item itemvalue="Python.app" />
+        <item itemvalue="Python.line_그래프_범위설정기능_점 애니메이션 기능_구현" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b1ed6d24-7465-481d-9549-77e924cf8c2f" name="Changes" comment="" />
+      <created>1666269677031</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1666269677031</updated>
+    </task>
+    <servers />
+  </component>
+</project>
