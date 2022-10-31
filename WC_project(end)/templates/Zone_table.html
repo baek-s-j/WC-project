@@ -1,0 +1,426 @@
+{%with messages = get_flashed_messages()%}
+{%if messages %}
+<script type="text/javascript">
+    alert("{{messages[-1]}}");
+</script>
+{%endif%}
+{%endwith%}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>온습도 관리 시스템</title>
+    <meta content="" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="static/img/favicon.svg" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="static/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="static/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">  <!-- 페이지 제목부분 -->
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-gray navbar-dark">
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="bi bi-badge-wc-fill"></i>Team WC</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    {% if session["id"] %}
+                    <div class="position-relative">
+                        <i class="bi bi-file-person"></i>
+                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">{{session["id"]}}</h6>
+                        <span>Manager</span>
+                    </div>
+                    {% else %}
+                    <div class="position-relative">
+                        <i class="bi bi-file-person"></i>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">None</h6>
+                        <span>Visitor</span>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="index.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Home</a>
+                    <a href="about.html" class="nav-item nav-link"><i class="bi bi-chat-dots-fill me-2"></i>About</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-chart-bar me-2"></i>Visualization</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="visualization.html" class="dropdown-item" style="text-align: right">Today</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="dloding.html" class="dropdown-item" style="text-align: right">Past</a>
+                        </div>
+                    </div>
+                    <a href="ploding.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Data Analysis</a>
+                    <a href="riskalarm.html" class="nav-item nav-link"><i class="bi bi-exclamation-diamond-fill me-2"></i>Risk Alarm</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Zone Info.</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="Sensor_table.html" class="dropdown-item" style="text-align: right">Sensor</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="Zone_table.html" class="dropdown-item active" style="text-align: right">Zone</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="Relic_table.html" class="dropdown-item" style="text-align: right">Relic</a>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-gray navbar-dark sticky-top px-4 py-0">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="bi bi-badge-wc-fill"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                {% if session["id"] %}
+                <div class="navbar-nav align-items-center ms-auto">
+
+
+                        <a href="logout" class="nav-link">
+                            <i class="bi bi-box-arrow-left"></i>
+                            <span class="d-none d-lg-inline-flex">LogOut</span>
+                        </a>
+                </div>
+                {% else %}
+                <script>
+                       location.href="/";
+                </script>
+                {% endif %}
+            </nav>
+            <!-- Navbar End -->
+
+
+            <!-- 데이터 정보 Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+
+                            <i class="bi bi-geo-alt-fill fa-3x text-primary "></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Place</p>
+                                <h6 class="mb-0">{{session['manager_place']}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="bi bi-smartwatch fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <div id="date" class="date" style="font-weight: bold "></div>
+                                <div id="time" class="time" style="font-weight: bold "></div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="bi bi-bezier fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Zone</p>
+                                <h6 class="mb-0">{{count.1}}구역</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="bi bi-binoculars-fill fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Relic</p>
+                                <h6 class="mb-0">{{count.0}}개</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 데이터 정보 end -->
+
+            <div class="container-fluid pt-4 px-4">
+
+
+
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button class="nav-link show active" id="nav-sensor-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-info" type="button" role="tab" aria-controls="nav-info"
+                                        aria-selected="true">Zone</button>
+
+                                    <button class="nav-link" id="nav-zone-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-add" type="button" role="tab"
+                                        aria-controls="nav-add" aria-selected="false">Add</button>
+
+                                </div>
+                            </nav>
+                            <div class="tab-content pt-3" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-sensor-tab">
+                                    <div class="bg-secondary  rounded p-4">
+
+                                    <div class="bg-secondary text-center rounded">
+                                    <div class="alert alert-dark mb-0" role="alert">
+                                        <h4>Zone Information</h4>
+                                            </div>
+                                    </div>
+                                    <!-- sensorTable Start -->
+                                    <div class="container-fluid pt-4 px-4">
+
+                                            <div class="table-responsive">
+                                                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                                    <thead>
+                                                        <tr class="text-dark">
+                                                            <th scope="col">No</th>
+                                                            <th scope="col">구역 번호</th>
+                                                            <th scope="col">구역 이름</th>
+                                                            <th scope="col">관리 번호</th>
+                                                            <th scope="col">Update</th>
+                                                            <th scope="col">Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+
+                                                                {% set pa=request.args.get('page')| int %}
+                                                                {% if pa==0 %}
+                                                                {% set pa=1 %}
+                                                                {% endif %}
+                                                            {% for i in z_result %}
+                                                            <tr class="text-dark">
+                                                                <td>{{loop.index+(10*(pa-1))}}</td>
+                                                                <td>{{i._id }}</td>
+                                                                <td>{{i.name }}</td>
+                                                                <td>{{i.familyId }}</td>
+                                                                <td><a class="btn btn-sm btn-primary" href="update_zone.html?id={{i._id}}">Update</a></td>
+                                                                <td><a class="btn btn-sm btn-primary" href="data_del.html?id={{i._id}}&data=Z">Delete</a></td>
+                                                            </tr>
+                                                            {% endfor %}
+
+
+                                                    </tbody>
+                                                </table>
+                                                <div class="btn-group me-2 pt-4" role="group" >
+                                                        {% for j in range(1,page_list) %}
+                                                    <button type="button" class="btn btn-primary" onclick="location.href='Zone_table.html?&page={{j}}' ">{{j}}</button>
+                                                        {% endfor %}
+
+                                                    </div>
+                                            </div>
+                                    </div>
+                                    <!-- sensorTable End -->
+                                </div>
+                                    </div>
+
+                                <div class="tab-pane fade" id="nav-add" role="tabpanel" aria-labelledby="nav-zone-tab" style=''>
+                                    <div class="row g-4">
+                                        <!-- 왼쪽 -->
+                                    <div class="col-sm-12 col-xl-6"  >
+                                        <div class="bg-gray rounded h-100 p-4" >
+                                            <h6 class="mb-4">Zone(구역) Add</h6>
+                                            <form action = "/addZoneAct" method = "POST">
+                                <div class="mb-3">
+                                    <label for="zone_name" class="form-label">구역 이름</label>
+                                    <input type="text" class="form-control" id="zone_name" name="zone_name"
+                                        autocomplete="off">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="zone_where" class="form-label">관리번호</label>
+                                    <select class="form-select" id="zone_where" name="zone_where" aria-label="Floating label select example">
+
+                                                        <option value="{{session['place_num']}}">{{session['place_num']}}</option>
+
+                                                        </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="responsible" class="form-label">책임자 번호(총 책임자만 추가 가능)</label>
+                                    <input type="password" class="form-control" id="responsible" name="responsible"
+                                        autocomplete="off">
+                                </div>
+
+
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </form>
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- 오른쪽 -->
+                                    <div class="col-sm-12 col-xl-6">
+                                        <div class="bg-gray rounded h-100 p-4">
+                                            <h6 class="mb-4">Help</h6>
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="accordion-item bg-transparent">
+                                                    <h2 class="accordion-header" id="heading">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                            data-bs-target="#collapsenum" aria-expanded="true"
+                                                            aria-controls="collapsenum">
+                                                            구역 번호
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapsenum" class="accordion-collapse collapse"
+                                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                        <div class="accordion-body">
+                                                            구역 번호는 자동으로 무작위로 생성됩니다.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-item bg-transparent">
+                                                    <h2 class="accordion-header" id="headingOne">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                            data-bs-target="#collapseOne" aria-expanded="false"
+                                                            aria-controls="collapseOne">
+                                                            구역 이름
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapseOne" class="accordion-collapse collapse"
+                                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                        <div class="accordion-body">
+                                                            원하는 이름을 입력해 주세요.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-item bg-transparent">
+                                                    <h2 class="accordion-header" id="headingTwo">
+                                                        <button class="accordion-button collapsed" type="button"
+                                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                            aria-expanded="false" aria-controls="collapseTwo">
+                                                            관리 번호
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapseTwo" class="accordion-collapse collapse"
+                                                        aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                                        <div class="accordion-body">
+                                                           유물공간 위치마다 정해져있는 값입니다.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-item bg-transparent">
+                                                    <h2 class="accordion-header" id="heading4">
+                                                        <button class="accordion-button collapsed" type="button"
+                                                            data-bs-toggle="collapse" data-bs-target="#collapse4"
+                                                            aria-expanded="false" aria-controls="collapse4">
+                                                            책임자 번호
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapse4" class="accordion-collapse collapse"
+                                                        aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                                        <div class="accordion-body">
+                                                           센서를 추가, 수정, 삭제 작업은 책임자만 가능합니다.
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!-- zoneTable End -->
+
+                                </div>
+
+
+
+
+
+                        </div>
+            </div>
+
+
+            </div>
+
+
+
+
+
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Temperature and Humidity Management System</a><br> All Right Reserved.
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="static/lib/chart/chart.min.js"></script>
+    <script src="static/lib/easing/easing.min.js"></script>
+    <script src="static/lib/waypoints/waypoints.min.js"></script>
+    <script src="static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="static/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="static/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="static/js/time.js"></script>
+    <!-- Template Javascript -->
+    <script src="static/js/main.js"></script>
+</body>
+
+</html>
