@@ -2,7 +2,9 @@
 
 <p align="center">
   <br>
-  <img src="./readme_img/wc.png">
+  <img src="./readme_img/wc.jpg">
+  <br>
+  <img src="./readme_img/wc1.jpg">
   <br>
 </p>
 
@@ -45,7 +47,7 @@
 #### Api를 이용하여 온습도 데이터를 10분 간격으로 저장하고 웹을 업데이트 (자동화)
 <p align="center">
   <br>
-  <img src="./readme_img/project3_1.jpg">
+  코드 넣자
   <br>
 </p>
 
@@ -53,15 +55,16 @@
 #### 관리자가 직관적으로 온습도 데이터의 해석을 가능하게 하는 기능 (직관적인 분석)
 <p align="center">
   <br>
-  <img src="./readme_img/project3_2.jpg">
+  <img src="./readme_img/wc2.jpg">
   <br>
+  <img src="./readme_img/wc3.jpg">
 </p>
 
 ### 온습도 예측 기능
 ####  과거에 데이터를 가지고 미래의 온습도를 예측한 결과를 제시하는 기능 (위험 대비)
 <p align="center">
   <br>
-  <img src="./readme_img/project3_3.jpg">
+  <img src="./readme_img/wc4.jpg">
   <br>
 </p>
 
@@ -69,10 +72,9 @@
 #### 온도나 습도가 안전범위를 벗어났으면 알람을 주는 기능 (효율적인 온습도 관리)
 <p align="center">
   <br>
-  <img src="./readme_img/project3_4_1.jpg">
+  <img src="./readme_img/wc5.jpg">
   <br>
-  <img src="./readme_img/project3_4_2.jpg">
-  <br>
+ 
 </p>
 
 
