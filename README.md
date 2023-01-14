@@ -52,7 +52,7 @@
 ## 구현 기능
 
 ### 1.일정한 간격으로 온습도 데이터 저장
-#### Api를 이용하여 온습도 데이터를 10분 간격으로 저장하고 웹을 업데이트 (자동화)
+#### 스마트 센서의 Api와 파이썬 스케줄러를 이용하여 온습도 데이터를 10분 간격으로 저장(자동화)
 
   ```python
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -72,19 +72,30 @@ def thdata_job():
 
 ### 2.온습도 시각화 기능
 #### 관리자가 직관적으로 온습도 데이터의 해석을 가능하게 하는 기능 (직관적인 분석)
+#### -MongoDB에 저장되어 있는 데이터를 가지고 Plotly를 이용하여 시각화
 <p align="center">
   <br>
   <img src="./readme_img/wc2.jpg">
   <br>
-  <img src="./readme_img/wc3.jpg">
 </p>
 
+#### -오늘 날짜 기준으로 업데이트 되고있는 데이터를 시각화하는 장면, 애니메이션을 이용해 동적인 효과 제공
+
+<p align="center">
+  <br>
+  <img src="./readme_img/wc3.jpg">
+  <br>
+</p>
+
+
+####  -오늘 이전의 데이터들을 가지고 시각화하고, 슬라이더 기능을 이용하여 자세하게 관측 가능
 
 <br>
 
 
 ### 3.온습도 예측 기능
 ####  과거에 데이터를 가지고 미래의 온습도를 예측한 결과를 제시하는 기능 (위험 대비)
+#### - 미리 학습시킨 LSTM 모델에 오늘 날짜 기준 기상청 데이터를 인풋으로 예측데이터를 보여줌
 <p align="center">
   <br>
   <img src="./readme_img/wc4.jpg">
@@ -98,6 +109,8 @@ def thdata_job():
 
 ### 4.위험 알림 기능
 #### 온도나 습도가 안전범위를 벗어났으면 알람을 주는 기능 (효율적인 온습도 관리)
+#### - 왼쪽의 Now risk는 Js로 1분간격으로 Api를 받아서 현재 상태를 보여줌
+#### - 오른쪽은 파이썬 스케줄러를 이용하여 30분 간격으로 온습도 데이터에 대한 위험도를 계산하여 표시됨
 <p align="center">
   <br>
   <img src="./readme_img/wc5.jpg">
