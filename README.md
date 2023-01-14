@@ -53,11 +53,19 @@
 
 ### 1.일정한 간격으로 온습도 데이터 저장
 #### Api를 이용하여 온습도 데이터를 10분 간격으로 저장하고 웹을 업데이트 (자동화)
-<p align="center">
-  <br>
-  코드 넣자
-  <br>
-</p>
+
+  ```python
+from apscheduler.schedulers.background import BackgroundScheduler
+  
+schedule_1 = BackgroundScheduler()
+
+@schedule_1.scheduled_job('cron', hour='0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23', 
+                           minute='0,10,20,30,40,50', id='thdata_job') #10분간격으로 실행
+def thdata_job():
+    exec(open("Thdataapi.py", encoding='utf-8').read())  #api를 이용해 데이터를 가져오는 코드
+    
+```    
+
 
 <br>
 
